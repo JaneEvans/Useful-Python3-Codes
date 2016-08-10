@@ -2,11 +2,11 @@
 
 import sys
 
-def predictOfficePrice(_trainList, _testList):
+def predictOfficePrice(_trainList, _testList, _F):
 	import numpy as np
 	train = np.array(_trainList)
-	trainData = train[: , 0:F]
-	trainValue = train[:, F]
+	trainData = train[: , 0:_F]
+	trainValue = train[:, _F]
 	testData = np.array(_testList)
 
 	from sklearn.preprocessing import PolynomialFeatures
@@ -24,19 +24,19 @@ _data = []
 trainList = []
 testList = []
 
-F, N = input().strip().split(" ") #F is the number of observed features. 
-F, N = int(F), int(N)			  #N is the train sample size
+F, N = input().strip().split(" ") # F is the number of observed features.
+F, N = int(F), int(N)  # N is the train sample size
 for i in range(N):
     rowData = input().strip()
     _data=rowData.split(" ")
     trainList.append(list(map(float,_data)))
 
-M = int(input())				  #M is the test sample size
+M = int(input())  # M is the test sample size
 for i in range(M):
     rowData = input().strip()
     _data=rowData.split(" ")
     testList.append(list(map(float,_data)))
 
-for testValue in predictOfficePrice(trainList, testList):
-    print(rount(testValue,2))
+for testValue in predictOfficePrice(trainList, testList, F):
+    print(round(testValue, 2))
 
